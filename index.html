@@ -101,15 +101,41 @@
             </div>
 
             <!-- CTA & Mobile Menu -->
+            <div id="mobileMenu"
+     class="fixed inset-0 z-50 hidden md:hidden">
+
+  <!-- overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- panel -->
+  <div class="absolute top-6 right-6 left-6 bg-white rounded-[2rem] p-6 shadow-2xl">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-bold text-stone-700 text-lg">Menu</span>
+      <button id="closeMobileMenu" class="text-stone-400 text-xl">✕</button>
+    </div>
+
+    <nav class="flex flex-col gap-3 text-sm font-semibold">
+      <a href="#" class="py-2 px-4 rounded-xl hover:bg-rose-100">Home</a>
+      <a href="#about" class="py-2 px-4 rounded-xl hover:bg-rose-100">About</a>
+      <a href="#characters" class="py-2 px-4 rounded-xl hover:bg-rose-100">Characters</a>
+      <a href="#shop" class="py-2 px-4 rounded-xl hover:bg-rose-100">Store</a>
+      <a href="contact.html" target="_blank"
+         class="py-2 px-4 rounded-xl font-bold text-white bg-gradient-to-br from-rose-400 to-orange-300 text-center">
+        Contact Us
+      </a>
+    </nav>
+  </div>
+</div>
             <div class="flex items-center gap-3">
                 <a href="contact.html"
    target="_blank"
    class="hidden md:flex items-center gap-2 hover:-translate-y-0.5 transition-all shadow-rose-200 hover:shadow-rose-300 text-sm font-bold text-white bg-gradient-to-br from-rose-300 to-[#fbe96f] rounded-full pt-2.5 pr-6 pb-2.5 pl-6 shadow-lg">
   Contact Us
 </a>
-                <button class="md:hidden w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-white text-stone-600">
-                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" stroke-width="1.5"></iconify-icon>
-                </button>
+                <button id="mobileMenuBtn"
+  class="md:hidden w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-white text-stone-600">
+  <iconify-icon icon="solar:hamburger-menu-linear" width="24" stroke-width="1.5"></iconify-icon>
+</button>
             </div>
         </div>
     </nav>
@@ -1078,7 +1104,27 @@
       }
     }
   });
+})();
+        (function () {
+  var openBtn = document.getElementById('mobileMenuBtn');
+  var menu = document.getElementById('mobileMenu');
+  var closeBtn = document.getElementById('closeMobileMenu');
 
+  if (!openBtn || !menu || !closeBtn) return;
+
+  openBtn.addEventListener('click', function () {
+    menu.classList.remove('hidden');
+  });
+
+  closeBtn.addEventListener('click', function () {
+    menu.classList.add('hidden');
+  });
+
+  menu.addEventListener('click', function (e) {
+    if (e.target === menu) {
+      menu.classList.add('hidden');
+    }
+  });
 })();
   </script>
 
